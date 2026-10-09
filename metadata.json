@@ -1,0 +1,6 @@
+{
+  "name": "Trend Cart BD",
+  "description": "A complete mobile-first Bangladesh e-commerce shopping app with Bengali language, Bangladeshi Taka (৳), Cash on Delivery, category shopping, and secure admin management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
