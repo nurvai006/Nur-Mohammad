@@ -1,0 +1,40 @@
+name: Build Trend Cart BD APK
+
+on:
+workflow_dispatch:
+
+permissions:
+contents: read
+
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout project
+uses: actions/checkout@v4
+
+  - name: Set up JDK
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: '17'
+
+  - name: Set up Android SDK
+    uses: android-actions/setup-android@v3
+
+  - name: Build debug APK
+    run: |
+      if [ ! -f gradlew ]; then
+        echo "ERROR: gradlew file is missing from project root."
+        exit 1
+      fi
+      chmod +x gradlew
+      ./gradlew assembleDebug --stacktrace
+
+  - name: Upload APK
+    if: success()
+    uses: actions/upload-artifact@v4
+    with:
+      name: trend-cart-bd-apk
+      path: app/build/outputs/apk/debug/*.apk
+      if-no-files-found: error
